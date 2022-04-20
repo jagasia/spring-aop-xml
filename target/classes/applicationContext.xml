@@ -1,0 +1,28 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:p="http://www.springframework.org/schema/p"
+   xmlns:aop="http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/aop
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<aop:config>
+		<aop:aspect id="aspect1" ref="logging">
+			<aop:pointcut expression="execution(* com.cts.hrms.*.calculate*(..))" id="all"/>
+			<aop:before pointcut-ref="all" method="beforeAdvice"/>
+			<aop:after pointcut-ref="all" method="afterAdvice"/>
+		</aop:aspect>
+	</aop:config>
+
+	<bean id="maths" class="com.cts.hrms.Mathematics" p:no1="2" p:no2="3">
+		
+	</bean>
+	
+	<bean id="logging" class="com.cts.hrms.Logging">
+	</bean>
+</beans>
+
+
